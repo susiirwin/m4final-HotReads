@@ -2,6 +2,7 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.create(link_params)
+
     if @link.save
       render json: @link, status: 201
     else
@@ -14,7 +15,9 @@ class LinksController < ApplicationController
   end
 
   private
+
   def link_params
     params.permit(:url)
+
   end
 end
