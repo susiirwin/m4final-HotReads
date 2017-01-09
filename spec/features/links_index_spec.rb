@@ -11,4 +11,16 @@ RSpec.describe "Show Links" do
     expect(page).to have_content(link.url)
   end
 
+  it "limits view to 10 links" do
+    11.times do |i|
+      Link.create(url: "#{i}.com")
+    end
+
+    visit '/'
+
+    expect(page).to have_selector("li", count: 10)
+  end
+
+  
+
 end

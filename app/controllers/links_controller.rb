@@ -12,7 +12,7 @@ class LinksController < ApplicationController
   end
 
   def index
-    @links = Link.all
+    @links = Link.order(submission_count: :desc).limit(10)
 
   end
 
