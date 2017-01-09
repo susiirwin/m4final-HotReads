@@ -22,7 +22,8 @@ module Hotreads
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.action_dispatch.default_headers = {
-    'Access-Control-Allow-Origin' => 'https://si-m4-final.herokuapp.com/',
+    # 'Access-Control-Allow-Origin' => 'https://si-m4-final.herokuapp.com/',
+    'Access-Control-Allow-Origin' => '*',
     'Access-Control-Request-Method' => %w{POST}
     }
   end
