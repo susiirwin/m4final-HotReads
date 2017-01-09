@@ -13,7 +13,7 @@ describe "Links API" do
     expect(Link.last.url).to eq ("http://www.google.com")
   end
 
-  xit 'does not post a duplicate link' do
+  it 'does not post a duplicate link' do
     link = JSON.generate(url: "http://www.google.com")
     link2 = JSON.generate(url: "http://www.yahoo.com")
     link3 = JSON.generate(url: "http://www.google.com")

@@ -10,4 +10,5 @@ RSpec.describe "Show Links" do
     expect(current_path).to eq(root_path)
     expect(page).to have_content(link.url)
   end
+
 end
