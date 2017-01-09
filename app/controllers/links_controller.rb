@@ -1,8 +1,7 @@
 class LinksController < ApplicationController
 
   def create
-    @link = Link.find_or_create_by(link_params)
-    @link.submission_count += 1
+    @link = Link.create(link_params)
     if @link.save
       render json: @link, status: 201
     else
@@ -13,7 +12,7 @@ class LinksController < ApplicationController
   def index
     @links = Link.all
   end
-  
+
   private
   def link_params
     params.permit(:url)

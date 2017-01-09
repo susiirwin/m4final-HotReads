@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Links API" do
-  xit 'retrieves a link' do
+  it 'retrieves a link' do
 
     link = JSON.generate(url: "http://www.google.com")
 
@@ -11,5 +11,25 @@ describe "Links API" do
 
     expect(response.status).to eq(201)
     expect(Link.last.url).to eq ("http://www.google.com")
+  end
+
+  xit 'does not post a duplicate link' do
+    link = JSON.generate(url: "http://www.google.com")
+    link2 = JSON.generate(url: "http://www.yahoo.com")
+    link3 = JSON.generate(url: "http://www.google.com")
+
+    post '/links/',
+      params: link,
+      headers: {'Content-type': 'application/json'}
+    post '/links/',
+      params: link2,
+      headers: {'Content-type': 'application/json'}
+    post '/links/',
+      params: link3,
+      headers: {'Content-type': 'application/json'}
+
+    expect(Link.count).to eq(2)
+    expect(Link.find_by(url: "http://www.google.com").submission_count).to eq(2)
+    expect(Link.find_by(url: "http://www.yahoo.com").submission_count).to eq(1)
   end
 end
