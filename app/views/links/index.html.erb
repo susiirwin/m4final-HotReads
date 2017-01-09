@@ -1,0 +1,8 @@
+<h1>Welcome to HotReads!</h1>
+<h2>Here are the Top 10 Links from URLLockBox</h2>
+
+<ol>
+  <% @links.each do |link| %>
+    <li><%= link.url %></li>
+  <% end %>
+</ol>
