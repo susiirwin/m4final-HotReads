@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
 
   def create
-    @link = Link.find_or_initialize_by(link_params)
+    @link = Link.new(link_params)
 
     @link.submission_count += 1
     if @link.save
