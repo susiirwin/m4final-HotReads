@@ -5,14 +5,17 @@ class LinksController < ApplicationController
 
     @link.submission_count += 1
     if @link.save
+      print "=================HIT THIS==============="
       render json: @link, status: 201
+
     else
       render json: @link.errors.full_messages, status: 500
     end
   end
 
   def index
-    @links = Link.where(updated_at: (Time.now - 24.hours)..Time.now).order(submission_count: :desc).limit(10)
+    @links = Link.all
+    # @links = Link.where(updated_at: (Time.now - 24.hours)..Time.now).order(submission_count: :desc).limit(10)
 
   end
 
