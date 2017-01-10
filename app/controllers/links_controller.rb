@@ -1,11 +1,10 @@
 class LinksController < ApplicationController
 
   def create
-    @link = Link.new(link_params)
+    @link = Link.find_or_initialize_by(link_params)
 
     @link.submission_count += 1
     if @link.save
-      print "=================HIT THIS==============="
       render json: @link, status: 201
 
     else
@@ -14,8 +13,7 @@ class LinksController < ApplicationController
   end
 
   def index
-    @links = Link.all
-    # @links = Link.where(updated_at: (Time.now - 24.hours)..Time.now).order(submission_count: :desc).limit(10)
+    @links = Link.where(updated_at: (Time.now - 24.hours)..Time.now).order(submission_count: :desc).limit(10)
 
   end
 
